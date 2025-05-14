@@ -135,7 +135,7 @@ if __name__ == "__main__":
     import uvicorn
     import os
 
-    port = int(os.environ.get("PORT", 8000))
+    port = int(os.environ.get("PORT", 8000))  # Use dynamic port (important for Render)
     logging.info(f"Starting FastAPI server on port {port}")
-    uvicorn.run("chat_with_api_res:app", host="0.0.0.0", port=port, reload=True)
+    uvicorn.run("chat_with_api_res:app", host="0.0.0.0", port=port)  # No reload!
 
