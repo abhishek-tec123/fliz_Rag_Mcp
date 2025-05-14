@@ -1,0 +1,61 @@
+Endpoint Name: Renter Company List  
+Method: GET  
+URL: api/v1/common/guestUser/renter_deliveryList  
+Description: Retrieves a paginated list of renters to be displayed on the home page.  
+Payload:
+  - catId (String) – Optional. Category ID used to filter renters by a specific category. 
+  - role (String) – Required. Must be set to "rental" to fetch renter users.  
+  - search (String) – Optional. A keyword to filter partners by name (e.g. company name).  
+
+---
+
+Endpoint Name: Delivery Company List  
+Method: GET  
+URL: api/v1/common/guestUser/renter_deliveryList  
+Description: Retrieves a paginated list of delivery companies to be displayed on the home page.  
+Payload:
+  - catId (String) – Optional. Category ID used to filter delivery companies by a specific category.  
+  - role (String) – Required. Must be set to "delivery" to fetch delivery users.  
+  - search (String) – Optional. A keyword to filter delivery partners by name (e.g., company name).  
+  - type (String) – Optional. A keyword to filter partners by type (e.g. Heavy,Light,Medium).  
+  - sizeTypetype (String) – Optional. A keyword to filter partners by size.  
+
+
+Endpoint Name: Vehicle List
+Method: GET
+URL: /api/v1/user/home/vehilceList/
+Purpose: Fetches a paginated list of vehicles owned by a specific user (denoted by :id), filtered by vehicle type and size.
+Payloads:
+page (Integer) – Optional. Page number for pagination.
+perPage (Integer) – Optional. Number of vehicles per page.
+type (String) – Optional. Type of vehicle (e.g., "Heavy", "Light").
+sizeType (String) – Optional. Size classification of vehicle.
+
+Endpoint Name: Vehicle Details
+Method: GET
+URL: /api/v1/user/home/vehicleDetails/
+Purpose: Retrieves detailed information about a specific vehicle.
+Payloads: None.
+
+Endpoint Nae: Equipment List
+Method: GET
+URL: /api/v1/user/home/equipmentList/:id
+Purpose: Retrieves a paginated list of equipment under a specific user or entity, filtered by nested category levels.
+Payloads:
+catId (String) – Category ID.
+subCatId (String) – Sub-category ID.
+sub_subCatId (String) – Sub-sub-category ID.
+page (Integer) – Page number for pagination.
+perPage (Integer) – Number of equipment items per page.
+
+Endpoint Name: Equipment Details
+Method: GET
+URL: /api/v1/user/home/equipmentDetails/:id
+Purpose: Retrieves detailed information about a specific equipment item using its unique ID.
+Payloads: None.
+
+
+
+
+
+

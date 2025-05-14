@@ -1,0 +1,31 @@
+# requirements.txt
+
+# Core
+python-dotenv
+fastapi
+uvicorn
+requests
+
+# Langchain and dependencies
+langchain
+langchain-community
+langchain-core
+langchain-huggingface
+langchain-groq
+
+# Vector embeddings
+sentence-transformers
+faiss-cpu
+
+# File handling
+pandas
+openpyxl
+tiktoken
+
+# ML/LLM
+transformers
+torch
+huggingface-hub
+
+# Versions
+numpy==1.26.4  # Important: Avoid numpy>=2 for now
