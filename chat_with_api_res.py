@@ -103,3 +103,10 @@ async def query_api(request: QueryRequest):
             "error": f"Groq streaming failed: {str(e)}",
             "query_result": result
         }
+
+if __name__ == "__main__":
+    import uvicorn
+    import os
+
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("chat_with_api_res:app", host="0.0.0.0", port=port, reload=True)

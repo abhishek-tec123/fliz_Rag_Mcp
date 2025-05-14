@@ -27,7 +27,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # Constants
 FAISS_INDEX_PATH = "api_faiss_index"
-BASE_URL = "http://dev.api.fliz.com.sa/"
+BASE_URL = "http://192.168.29.55:3000/"
 
 # Prompt
 llm = ChatGroq(groq_api_key=groq_api_key, model_name="Llama3-8b-8192", temperature=0)
