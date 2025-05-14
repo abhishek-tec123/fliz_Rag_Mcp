@@ -82,14 +82,16 @@ async def query_api(request: QueryRequest):
                 {
                     "role": "system",
                     "content": (
-                        "You are a helpful assistant that analyzes API responses for users.\n"
                         "Your task is to:\n"
                         "- Extract only the most relevant and necessary data.\n"
+                        "- Do not include image URLs, banner URLs, or any visual media links.\n"
+                        "- If available, include the `url` field from the data (e.g., 'data.url') to help the user access the service.\n"
                         "- Remove all unnecessary technical fields such as IDs, timestamps, metadata, etc.\n"
                         "- Format the output using clean, labeled sections or bullet points.\n"
                         "- Keep it human-readable and structured (not JSON).\n"
                         "- Do not add explanations or hallucinated content.\n"
                         "Present the response as if you're summarizing it for a user in a clear, factual way."
+
                     )
                 },
                 {

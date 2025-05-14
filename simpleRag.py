@@ -53,7 +53,7 @@ class EndpointRetriever:
         self.vectors = None
 
     def vector_embedding(self):
-        embeddings = HuggingFaceEmbeddings()
+        embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
         if self.vectors:
             return {"status": "FAISS index already loaded."}
 
@@ -71,6 +71,7 @@ class EndpointRetriever:
         self.vectors.save_local(FAISS_INDEX_PATH)
 
         return {"status": "Vector embeddings created and saved."}
+
 
     def retrieval(self, query):
         if not self.vectors:
