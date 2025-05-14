@@ -1,0 +1,22 @@
+1.  Python: Numpy, Pandas, Matplotlib, OOPs
+    Tools: Git, Jupyter, Virtual Environments
+
+2.  Supervised: Linear Regression, Logistic Regression, Decision Trees, Random Forests, SVM
+    Unsupervised: K-Means, PCA, DBSCA
+    Model Evaluation: Confusion Matrix, AUC, F1-score, Cross-validation
+    (Scikit-Learn
+    XGBoost / LightGBM)
+    
+3.  Neural Networks: Perceptron, MLPs
+    CNNs, RNNs, LSTMs, Transformers
+    Backpropagation, Activation Functions, Loss Functions
+
+4.  Large Language Models (LLMs)
+    Concepts: Embeddings, Attention, Transformers, Pretraining vs Finetuning
+    Tools: Hugging Face, LangChain, LLMs model API, FAISS
+    Projects: Chatbot, RAG system, Fine-tune BERT/GPT
+
+5.  Personal AI assistant with vector search + LLM
+    Handwritten Digit Recognition (MNIST)
+    Image Classifier
+    Real-Time Sign Language Recognition

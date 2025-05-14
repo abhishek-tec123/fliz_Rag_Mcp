@@ -104,6 +104,11 @@ async def query_api(request: QueryRequest):
             "query_result": result
         }
 
+@app.get("/ping")
+async def ping():
+    return {"message": "API is up and running!"}
+
+
 if __name__ == "__main__":
     import uvicorn
     import os
