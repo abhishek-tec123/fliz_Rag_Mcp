@@ -40,7 +40,7 @@ class VectorStoreBuilder:
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
         self.persist_dir = persist_dir
-        self.embeddings = HuggingFaceEmbeddings()
+        self.embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
         self._vectorstore = None
 
     def split_documents(self, documents):
