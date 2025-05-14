@@ -42,12 +42,21 @@ from pydantic import BaseModel
 from simpleRag import FlizApiHandler
 from groq import Groq
 import json
+import logging
+import time
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 app = FastAPI()
 
-# Initialize once
+# Initialize components
 api_handler = FlizApiHandler(api_doc_path="/Users/macbook/Desktop/fliz_Mcp_Rag/api.txt")
 groq_client = Groq()
+logging.info("Initialized FlizApiHandler and Groq client.")
 
 class QueryRequest(BaseModel):
     query: str
@@ -55,11 +64,19 @@ class QueryRequest(BaseModel):
 
 @app.post("/query")
 async def query_api(request: QueryRequest):
-    # Step 1: Get the API info using LangChain + vector search
-    result = api_handler.process_query(request.query, method=request.method)
+    logging.info(f"Received query: {request.query}")
+    logging.info(f"HTTP Method: {request.method}")
 
-    # Step 2: Prepare message for Groq LLM
+    # Step 1: Process query with LangChain + vector search
+    start_time = time.time()
+    result = api_handler.process_query(request.query, method=request.method)
+    logging.info(f"API processing completed in {time.time() - start_time:.2f}s")
+    logging.info("Raw API result:")
+    logging.info(json.dumps(result, indent=2))
+
+    # Step 2: Call Groq LLM to summarize
     try:
+        logging.info("Starting Groq LLM streaming response...")
         stream = groq_client.chat.completions.create(
             messages=[
                 {
@@ -92,13 +109,16 @@ async def query_api(request: QueryRequest):
             content_piece = chunk.choices[0].delta.content or ""
             description += content_piece
 
-        # Step 3: Return both raw API result and Groq summary
+        logging.info("Groq summary generated successfully.")
+        logging.info(f"Summary:\n{description.strip()}")
+
         return {
             "query_result": result,
             "summary": description.strip()
         }
 
     except Exception as e:
+        logging.error("Groq streaming failed", exc_info=True)
         return {
             "error": f"Groq streaming failed: {str(e)}",
             "query_result": result
@@ -106,12 +126,14 @@ async def query_api(request: QueryRequest):
 
 @app.get("/ping")
 async def ping():
+    logging.info("Received ping request.")
     return {"message": "API is up and running!"}
-
 
 if __name__ == "__main__":
     import uvicorn
     import os
 
     port = int(os.environ.get("PORT", 8000))
+    logging.info(f"Starting FastAPI server on port {port}")
     uvicorn.run("chat_with_api_res:app", host="0.0.0.0", port=port, reload=True)
+

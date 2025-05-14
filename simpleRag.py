@@ -96,9 +96,9 @@ class FlizApiHandler:
 
         try:
             if method.upper() == 'POST':
-                response = requests.post(full_url, headers=headers, json=payload, timeout=10)
+                response = requests.post(full_url, headers=headers, json=payload)
             else:
-                response = requests.get(full_url, headers=headers, params=payload, timeout=10)
+                response = requests.get(full_url, headers=headers, params=payload)
 
             response.raise_for_status()
             return response.status_code, response.json()
